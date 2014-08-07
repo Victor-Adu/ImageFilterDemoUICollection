@@ -43,11 +43,11 @@ class PhotoViewController: UIViewController {
     
     
     @IBAction func selectedHandlePhoto(sender: AnyObject) {
-        
+        println("Image Clicked")
         self.delegate!.photoSelected(self.asset)
             self.navigationController.popToRootViewControllerAnimated(true)
-        
-    }
+    
+      }
     
 
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fAN-tl-Mon">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
@@ -29,7 +29,8 @@
                                     <constraint firstAttribute="width" constant="127" id="DIU-AT-PSh"/>
                                     <constraint firstAttribute="height" constant="30" id="bjh-bt-17T"/>
                                 </constraints>
-                                <state key="normal" title="Photo">
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Get Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -51,16 +52,18 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="O4q-T7-r0Q" secondAttribute="centerX" id="U7z-K5-3hW"/>
                             <constraint firstAttribute="centerX" secondItem="Bx2-A8-eUJ" secondAttribute="centerX" id="XR4-g4-kn7"/>
-                            <constraint firstItem="Bx2-A8-eUJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="snu-OF-ebd"/>
+                            <constraint firstItem="Bx2-A8-eUJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-36" id="snu-OF-ebd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="O4q-T7-r0Q" secondAttribute="bottom" constant="92" id="ztW-Su-1vL"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Dws-hK-qUM"/>
                     <connections>
                         <outlet property="imageView" destination="Bx2-A8-eUJ" id="fga-T0-Bii"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1197" y="-557"/>
         </scene>
         <!--Grid View Controller-->
         <scene sceneID="VVH-Tv-ruz">
@@ -74,20 +77,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-vE-xUL">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-vE-xUL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n7H-PC-t6U">
-                                    <size key="itemSize" width="105" height="105"/>
+                                    <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="Ji9-qQ-bsM" customClass="CellforPhoto" customModule="ImageFilterDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3zG-po-5oT">
@@ -105,6 +108,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DgL-vE-xUL" secondAttribute="trailing" id="OK1-Xh-kPY"/>
+                            <constraint firstItem="DgL-vE-xUL" firstAttribute="top" secondItem="CEh-4e-1eH" secondAttribute="top" id="a7k-PD-wnF"/>
+                            <constraint firstItem="bh0-D9-NM5" firstAttribute="top" secondItem="DgL-vE-xUL" secondAttribute="bottom" id="abQ-NZ-jBg"/>
+                            <constraint firstItem="DgL-vE-xUL" firstAttribute="leading" secondItem="CEh-4e-1eH" secondAttribute="leading" id="wCp-Co-fjT"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="DgL-vE-xUL" id="Utp-T7-wrm"/>
@@ -112,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJn-9I-WlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153" y="-557"/>
+            <point key="canvasLocation" x="1965" y="-557"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="VGp-4j-y3l">
@@ -127,18 +136,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RSC-JE-50C">
-                                <rect key="frame" x="65" y="28" width="471" height="478"/>
+                                <rect key="frame" x="65" y="108" width="471" height="322"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="471" id="1QU-aC-Lyc"/>
-                                    <constraint firstAttribute="height" constant="478" id="nTQ-ix-cwk"/>
+                                    <constraint firstAttribute="height" constant="322" id="nTQ-ix-cwk"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJg-0y-auW">
-                                <rect key="frame" x="233" y="541" width="135" height="30"/>
+                                <rect key="frame" x="233" y="496" width="142" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="Kqy-ae-nzK"/>
-                                    <constraint firstAttribute="height" constant="30" id="pgl-b8-0en"/>
+                                    <constraint firstAttribute="width" constant="142" id="Kqy-ae-nzK"/>
+                                    <constraint firstAttribute="height" constant="36" id="pgl-b8-0en"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Select Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -149,9 +159,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="FJg-0y-auW" secondAttribute="centerX" id="BYZ-BH-UHc"/>
-                            <constraint firstItem="fiF-MB-5Bs" firstAttribute="top" secondItem="FJg-0y-auW" secondAttribute="bottom" constant="29" id="YG0-G6-1kZ"/>
-                            <constraint firstItem="RSC-JE-50C" firstAttribute="top" secondItem="yP3-Sm-pX1" secondAttribute="bottom" constant="8" id="aSH-kc-ios"/>
+                            <constraint firstAttribute="centerX" secondItem="FJg-0y-auW" secondAttribute="centerX" constant="-4" id="BYZ-BH-UHc"/>
+                            <constraint firstItem="fiF-MB-5Bs" firstAttribute="top" secondItem="FJg-0y-auW" secondAttribute="bottom" constant="68" id="YG0-G6-1kZ"/>
+                            <constraint firstItem="RSC-JE-50C" firstAttribute="top" secondItem="yP3-Sm-pX1" secondAttribute="bottom" constant="44" id="aSH-kc-ios"/>
                             <constraint firstAttribute="centerX" secondItem="RSC-JE-50C" secondAttribute="centerX" id="gp3-Sr-u7g"/>
                         </constraints>
                     </view>
@@ -161,7 +171,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iC3-E2-TNp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1891" y="-557"/>
+            <point key="canvasLocation" x="2703" y="-557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iOQ-DS-Jpa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fAN-tl-Mon" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JEC-Me-OlA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jQ1-ng-Had"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cj2-hA-0ty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="385" y="-557"/>
         </scene>
     </scenes>
 </document>

@@ -44,6 +44,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource, PhotoSel
         if segue.identifier == "ShowPhoto" {
             var cell = sender as CellforPhoto //??
             var indexPath = self.collectionView.indexPathForCell(cell)
+            
             let photoVC = segue.destinationViewController as PhotoViewController
             photoVC.asset = self.assetsFetchResult[indexPath.item] as PHAsset
             photoVC.delegate = self

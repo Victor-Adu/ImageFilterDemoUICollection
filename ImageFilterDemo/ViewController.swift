@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Photos
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PhotoSelectedDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -21,14 +22,29 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //Create AlertView
     let alertView = UIAlertController(title: "Alert!", message: "Requesting permission to access your Photos", preferredStyle: UIAlertControllerStyle.Alert)
     
-    //Placed a button over my UIImageView to allow user to add photo by clicking the image.
-    @IBAction func getPhotoImage(sender: AnyObject) {
-        
-        self.presentViewController(self.actionController, animated: true, completion: nil)
-    }
+ 
+//    //Placed a button over my UIImageView to allow user to add photo by clicking the image.
+//    @IBAction func getPhotoImage(sender: AnyObject) {
+//        
+//        if (self.actionController.popoverPresentationController != nil) {
+//            
+//            self.actionController.popoverPresentationController.sourceView = self.imageView
+//            
+//             //This will handle the the popup to show properly on the respective button in iPad
+//            self.actionController.popoverPresentationController.sourceRect = CGRect(x: self.imageView.frame.width/2, y: self.imageView.frame.height, width: 0, height: 0)
+//            
+//        }
+//        self.presentViewController(self.actionController, animated: true, completion: nil)
+//    } 
     
     @IBAction func photoHandleBtnPressed(sender: AnyObject) {
     // The NSUserDefaults checks whether it's the first time user is using the app feature and presents 'ActionController' or 'AlertView' afterwards.
+        
+        //This will handle the the popup to show properly on the respective button in iPad
+        if (self.actionController.popoverPresentationController != nil) {
+            self.actionController.popoverPresentationController.sourceView = sender as UIButton
+            
+        }
       if NSUserDefaults.standardUserDefaults().boolForKey("Requesting Initial Permission") {
             self.presentViewController(actionController, animated: true, completion: nil)
 
@@ -64,6 +80,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.photoPicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
             self.presentViewController(self.photoPicker, animated: true, completion: nil)
             
+            //Segue to Collection View
+            self.performSegueWithIdentifier("ShowGrid", sender: self)
+            
             })
         
         let optionToCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(action: UIAlertAction!) -> Void in
@@ -71,7 +90,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                //Cancel
             
             })
-        
+    
         self.actionController.addAction(optionForCamera)
         self.actionController.addAction(optionForPhotoLib)
         self.actionController.addAction(optionToCancel)
@@ -103,6 +122,29 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //Segue Method
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if segue.identifier == "ShowGrid" {
+            let gridVC = segue.destinationViewController as GridViewController
+            gridVC.assetsFetchResult = PHAsset.fetchAssetsWithOptions(nil)
+            gridVC.delegate = self
+        }
+    }
+    
+    //MARK:  Photo Selected Delegate
+    func photoSelected(asset: PHAsset) {
+        println("Final step to put fetched image back to main screen")
+        
+        var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
+        
+        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (result: UIImage!, [NSObject : AnyObject]!) -> Void in
+            
+            self.imageView.image = result
+            
+        }
+        
     }
 
 
